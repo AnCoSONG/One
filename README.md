@@ -1,5 +1,5 @@
 # OnE
-OnE is an integrated platform for my own product.
+OnE is an integrated platform for my own products.
 
 ## To-Do
 
