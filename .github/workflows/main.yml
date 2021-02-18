@@ -32,9 +32,15 @@ jobs:
           node-version: 15.8.0
 
       # Runs a set of commands using the runners shell
+
       # every step the pwd would be ./
+
       # ssh connection will defaultly link to the user directory, therefore you need to pass the dest with '../'
       # prefix if you want to move to the root directory.
+      
+      # nestjs need the node_modules copy
+
+      # copy all fe files directly into the oneapps folder
       - name: install yarn
         run: npm i yarn
       - name: install front end pkgs and build
@@ -50,8 +56,9 @@ jobs:
       - name: copy the build result into one directory
         run: |
           mkdir oneapps
-          mv src/vue/dist oneapps/
+          mv src/vue/dist/* oneapps/
           mv src/nest/dist oneapps/api
+          mv src/nest/node_modules oneapps/api
       - name: deploy to ali cloud
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
