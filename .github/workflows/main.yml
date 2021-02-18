@@ -34,21 +34,17 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: install yarn
         run: npm i yarn
-      - name: install front end pkgs
+      - name: install front end pkgs and build
         run: |
           ls
           cd src/vue
           yarn
-      - name: build frontend
-        run:
           yarn build
       - name: install backend pkgs
         run: |
           ls
           cd ../nest
           yarn
-      - name: build backend
-        run:
           yarn build
       - name: copy the build result into one directory
         run: |
