@@ -1,4 +1,4 @@
-# OnE
+# One
 OnE is an integrated platform for my own products.
 
 ## To-Do
