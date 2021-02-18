@@ -9,11 +9,9 @@ async function bootstrap() {
     .setTitle('Nest Learner Demo')
     .setDescription('API description')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('NestJS')
     .build();
-  const document = SwaggerModule.createDocument(app, config, {
-    ignoreGlobalPrefix: true,
-  });
+  const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api-doc', app, document);
   await app.listen(5000);
 }
