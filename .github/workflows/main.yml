@@ -35,7 +35,7 @@ jobs:
       - name: install yarn
         run: npm i yarn
       - name: install front end pkgs
-        run: 
+        run: |
           ls
           cd src/vue
           yarn
@@ -43,7 +43,7 @@ jobs:
         run:
           yarn build
       - name: install backend pkgs
-        run: 
+        run: |
           ls
           cd ../nest
           yarn
@@ -51,7 +51,7 @@ jobs:
         run:
           yarn build
       - name: copy the build result into one directory
-        run:
+        run: |
           cd ../../
           mkdir oneapps
           mv src/vue/dist/* oneapps/fe
