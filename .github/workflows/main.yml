@@ -2,13 +2,13 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,10 +28,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
-        with: 
+        with:
           node-version: 15.8.0
 
       # Runs a set of commands using the runners shell
+      # every step the pwd would be ./
       - name: install yarn
         run: npm i yarn
       - name: install front end pkgs and build
@@ -41,7 +42,6 @@ jobs:
           yarn build
       - name: install backend pkgs
         run: |
-        # every step the pwd would be ./
           cd src/nest
           yarn
           yarn build
@@ -52,7 +52,7 @@ jobs:
           mv src/nest/dist/* oneapps/be
       - name: deploy to ali cloud
         uses: easingthemes/ssh-deploy@v2.1.1
-        env: 
+        env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           REMOTE_HOST: "101.132.227.173"
           REMOTE_USER: "root"
