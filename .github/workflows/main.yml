@@ -1,0 +1,71 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 15.8.0
+
+      # Runs a set of commands using the runners shell
+
+      # every step the pwd would be ./
+
+      # ssh connection will defaultly link to the user directory, therefore you need to pass the dest with '../'
+      # prefix if you want to move to the root directory.
+      
+      # nestjs need the node_modules copy
+
+      # copy all fe files directly into the oneapps folder
+      - name: install yarn
+        run: npm i yarn
+      - name: install front end pkgs and build
+        run: |
+          cd src/vue
+          yarn
+          yarn build
+      - name: install backend pkgs
+        run: |
+          cd src/nest
+          yarn
+          yarn build
+      - name: copy the build result into one directory
+        run: |
+          mkdir oneapps
+          mkdir oneapps/api
+          mv src/vue/dist/* oneapps/
+          mv src/nest/dist/* oneapps/api
+          mv src/nest/node_modules oneapps
+      - name: deploy to ali cloud
+        uses: easingthemes/ssh-deploy@v2.1.1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          REMOTE_HOST: "101.132.227.173"
+          REMOTE_USER: "root"
+          ARGS: "-avzr --delete"
+          SOURCE: "./oneapps"
+          TARGET: "../www/wwwroot/one.anco.fun/"
