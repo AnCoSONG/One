@@ -108,9 +108,9 @@ onMounted(loadArticle)
                 font-size: 2.75rem;
                 font-weight: 700;
                 color: #333;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
+                // overflow: hidden;
+                // white-space: nowrap;
+                // text-overflow: ellipsis;
 
                 @media screen and (max-width: 800px) {
                     font-size: 2rem;
