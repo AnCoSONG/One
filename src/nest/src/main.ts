@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
+  app.setGlobalPrefix('api');
   const config = new DocumentBuilder()
     .setTitle('Nest Learner Demo')
     .setDescription('API description')
@@ -11,7 +12,7 @@ async function bootstrap() {
     .addTag('cats')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-doc', app, document);
+  SwaggerModule.setup('/api/api-doc', app, document);
   await app.listen(5000);
 }
 bootstrap();
