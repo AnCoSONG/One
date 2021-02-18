@@ -48,8 +48,8 @@ jobs:
       - name: copy the build result into one directory
         run: |
           mkdir oneapps
-          mv src/vue/dist/* oneapps/fe
-          mv src/nest/dist/* oneapps/be
+          mv src/vue/dist oneapps/fe
+          mv src/nest/dist oneapps/be
       - name: deploy to ali cloud
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
