@@ -8,7 +8,7 @@ import { ArticleModule } from './article/article.module';
 @Module({
   imports: [
     ArticleModule,
-    MongooseModule.forRoot('mongodb://admin:admin2021@one.anco.fun/oneblog', {
+    MongooseModule.forRoot('mongodb://admin:admin2021@api.anco.fun/oneblog', {
       useNewUrlParser: true,
       useFindAndModify: false,
       useCreateIndex: true,

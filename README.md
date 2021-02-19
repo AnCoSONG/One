@@ -1,5 +1,5 @@
 # One
-OnE is an integrated platform for my own products.
+One is an integrated platform for my own products.
 
 ## To-Do
 
@@ -7,3 +7,4 @@ OnE is an integrated platform for my own products.
 - [ ] chat platform
 - [ ] blog platform
 - [ ] wait for new ideas.
+- [ ] fix swagger/nginx error.

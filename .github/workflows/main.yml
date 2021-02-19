@@ -55,15 +55,27 @@ jobs:
           yarn build
       - name: copy the build result into one directory
         run: |
-          mkdir oneapps
-          mv src/vue/dist/* oneapps/
-          mv src/nest oneapps/api
-      - name: deploy to ali cloud
+          mkdir one
+          mkdir api
+          mv src/vue/dist/* one/
+          mv src/nest/dist api
+          mv src/nest/node_modules api
+      - name: deploy frontend
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           REMOTE_HOST: "101.132.227.173"
           REMOTE_USER: "root"
           ARGS: "-avzr --delete"
-          SOURCE: "./oneapps"
+          SOURCE: "./one"
           TARGET: "../www/wwwroot/one.anco.fun/"
+
+      - name: deploy backend
+        uses: easingthemes/ssh-deploy@v2.1.1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          REMOTE_HOST: "101.132.227.173"
+          REMOTE_USER: "root"
+          ARGS: "-avzr --delete"
+          SOURCE: "./api"
+          TARGET: "../www/wwwroot/api.anco.fun/"
