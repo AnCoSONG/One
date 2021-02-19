@@ -35,6 +35,7 @@ import { onMounted, ref } from 'vue'
 import MdArticle from 'comps/blog/md-article.vue'
 import { useAxios } from '../../plugins/axios-plugin'
 import { useRoute } from 'vue-router'
+import fm from 'front-matter'
 //! UPDATE: 可以通过props = defineProps({...}) 来定义属性，没有任何问题
 //! UPDATE: 使用aid拿到文章对象即可
 const route = useRoute()
@@ -52,7 +53,7 @@ const loadArticle = async () => {
     title.value = articleContent.title
     author.value = articleContent.author
     date.value = articleContent.date
-    mdContent.value = articleContent.content
+    mdContent.value = fm(articleContent.content).body
 }
 onMounted(loadArticle)
 //// 本来想在这个页面完整拿取数据，给md-article传参，但是新的script setup不知道为什么无法定义props
