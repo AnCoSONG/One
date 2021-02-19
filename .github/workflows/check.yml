@@ -9,3 +9,21 @@ jobs:
     steps: 
       - name: echo hello world
         run: echo hello world
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 15.8.0
+      - name: install yarn
+        run: npm i yarn
+      - name: install front end pkgs and test
+        run: |
+          cd src/vue
+          yarn
+          yarn test
+      - name: install beackend pkgs and test
+        run: |
+          cd src/nest
+          yarn
+          yarn test
