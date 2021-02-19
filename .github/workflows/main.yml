@@ -62,18 +62,27 @@ jobs:
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          REMOTE_HOST: "101.132.227.173"
-          REMOTE_USER: "root"
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
           ARGS: "-avzr --delete"
           SOURCE: "./one"
-          TARGET: "../www/wwwroot/one.anco.fun/"
+          TARGET: ${{ secrets.FRONT_END_TARGET }}
 
       - name: deploy backend
         uses: easingthemes/ssh-deploy@v2.1.1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          REMOTE_HOST: "101.132.227.173"
-          REMOTE_USER: "root"
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
           ARGS: "-avzr --delete"
           SOURCE: "./api"
-          TARGET: "../www/wwwroot/api.anco.fun/"
+          TARGET: ${{ secrets.BACK_END_TARGET }}
+      - name: restart nest
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{secrets.HOST}}
+          username: ${{ secrets.USERNAME}}
+          key: ${{secrets.PRIVATE_KEY}}
+          script: |
+            pm2 restart nest
+            pm2 show nest
