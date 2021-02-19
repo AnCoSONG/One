@@ -5,7 +5,8 @@
     "dev": "cross-env NODE_ENV=development vite",
     "build": "vuedx-typecheck . && vite build",
     "dbuild": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "vuedx-typecheck ."
   },
   "dependencies": {
     "@types/katex": "^0.11.0",
