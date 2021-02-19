@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "dompurify": "^2.2.6",
     "element-plus": "^1.0.2-beta.32",
+    "front-matter": "^4.0.2",
     "katex": "^0.12.0",
     "marked": "^2.0.0",
     "mockjs": "^1.1.0",
