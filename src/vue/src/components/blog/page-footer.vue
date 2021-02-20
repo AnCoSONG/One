@@ -12,11 +12,11 @@
                     <span class="dot">・</span>
                 </div>
                 <div class="footer-item">
-                    <a class="text">聊天</a>
+                    <a class="text">聊天</a>
                     <span class="dot">・</span>
                 </div>
                 <div class="footer-item">
-                    <a class="text">关于我</a>
+                    <a class="text">关于我</a>
                 </div>
             </div>
             <div class="center-footer">
