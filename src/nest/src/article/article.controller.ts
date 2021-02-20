@@ -37,13 +37,14 @@ export class ArticleController {
   @Post()
   @ApiOperation({ summary: '创建文章' })
   async create(@Body() createArticleDto: CreateArticleDto) {
-    const result = { success: false, id: null };
+    const result = { success: false, id: null, error_msg: null };
     try {
       const createRes = await this.articleService.create(createArticleDto);
       result.success = true;
       result.id = createRes._id;
     } catch (e) {
-      console.error(e);
+      console.error(e.message);
+      result.error_msg = e.message;
     } finally {
       return result;
     }
@@ -55,13 +56,14 @@ export class ArticleController {
     @Param('id') id: string,
     @Body() updateArticleDto: UpdateArticleDto,
   ) {
-    const result = { success: false, id: null };
+    const result = { success: false, id: null, error_msg: null };
     try {
       const updateRes = await this.articleService.update(id, updateArticleDto);
       result.success = true;
       result.id = updateRes._id;
     } catch (e) {
-      console.error(e);
+      console.error(e.message);
+      result.error_msg = e.message;
     } finally {
       return result;
     }
@@ -70,7 +72,17 @@ export class ArticleController {
   @Delete(':id')
   @ApiOperation({ summary: '删除文章(上线后加验证)' })
   async remove(@Param('id') id: string) {
-    return await this.articleService.remove(id);
+    const result = { success: false, id: null, error_msg: null };
+    try {
+      const removeRes = await this.articleService.remove(id);
+      result.success = true;
+      result.id = removeRes._id;
+    } catch (e) {
+      console.error(e.message);
+      result.error_msg = e.message;
+    } finally {
+      return result;
+    }
   }
 
   @Delete()
