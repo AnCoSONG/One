@@ -16,10 +16,10 @@ export class ArticleService {
     return await this.articleModel.create(createArticleDto);
   }
   async findAll(): Promise<ArticleDocument[]> {
-    return this.articleModel.find().exec();
+    return await this.articleModel.find().exec();
   }
   async find(id): Promise<ArticleDocument> {
-    return this.articleModel.findById(id).exec();
+    return await this.articleModel.findById(id).exec();
   }
   async list(pageNo: number, pageSize: number): Promise<any> {
     const data = await this.articleModel
