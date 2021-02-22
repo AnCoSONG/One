@@ -11,11 +11,12 @@
 <script setup lang='ts'>
 import marked from 'marked'
 import DOMPurify from 'dompurify'
+import { useRouter } from 'vue-router'
 import katex from 'katex'
 import { computed, onMounted, defineProps,toRef } from 'vue';
 // import { md } from './temp'
 import renderMathInElement from 'katex/dist/contrib/auto-render';
-
+const router = useRouter()
 
 //// 根据article id拿到文章详细
 // 通过props拿到原始md，进行处理
@@ -28,7 +29,13 @@ const cleanHtml = computed(() => {
     if (md.value) {
         return DOMPurify.sanitize(marked(md.value))
     } else {
-        return '<em>MD is NULL!<em>'
+        router.push({name: '404', query:{backName: 'blog'}})
+        return '';
+        // return `<div style="width:100%;height: 300px;display: flex; justify-content: center; align-items: center;flex-direction: column;">
+        //     <div class="no-data" style="margin-bottom:10px;"></div>
+        //     <em style="font-size:20px; font-weight: 400;margin-bottom:10px;">文档已被移除</em>
+        //     <a href="/blog" style="text-decoration:none; border:1px solid #2886f1;border-radius:6px;width:100px;text-align:center;line-height:30px;">返回</a>
+        // <div>`
     }
 })
 //! 再次强调，读入的markdown文件必须将斜杠转换为\\才行
@@ -54,6 +61,13 @@ onMounted(() => renderMathInElement(document.querySelector('.markdown-body') as 
     .markdown-body {
         text-align: left;
         font-family: nunito, Helvetica, Arial, sans-serif;
+        
+        .no-data {
+            background: url(../../assets/nodata.svg) no-repeat center center;
+            background-size: contain;
+            height: 120px;
+            width: 160px;
+        }
     }
 
     @include md-font;

@@ -34,3 +34,6 @@ createApp(App).use(router).use(store).mount('#app')
   - [x] 文章展示逻辑? 首先请求文章列表，文章列表带query请求，自动分页，通过文章的aid请求文章详情，marked自动解析markdown，github样式 
 - [ ] 完成SSO单点登录
 - [ ] 鉴权等
+- [ ] 文章页面下需要版权和转载声明
+- [ ] 多篇文章浏览：next prev
+- [x] 没有该文章自动导航到404
