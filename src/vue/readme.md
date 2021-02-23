@@ -37,3 +37,7 @@ createApp(App).use(router).use(store).mount('#app')
 - [ ] 文章页面下需要版权和转载声明
 - [ ] 多篇文章浏览：next prev
 - [x] 没有该文章自动导航到404
+- [ ] marked解析markdown tasklist会保留marker标记，想办法去除(marked.use?更改外部css属性？)
+- [ ] markdown内a标签锚点跳转平滑（onMounted内劫持所有锚点a标签）
+- [ ] markdown视频小尺寸下会超出，需要设置markdown-body video {max-width: 100%}
+- [ ] 多行公式无法渲染（非katex问题）
