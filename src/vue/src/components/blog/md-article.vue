@@ -13,7 +13,7 @@ import marked from 'marked'
 import DOMPurify from 'dompurify'
 import { useRouter } from 'vue-router'
 import katex from 'katex'
-import { computed, onMounted, defineProps,toRef } from 'vue';
+import { computed, onMounted, defineProps, toRef } from 'vue';
 // import { md } from './temp'
 import renderMathInElement from 'katex/dist/contrib/auto-render';
 const router = useRouter()
@@ -27,9 +27,10 @@ const props = defineProps({
 const md = toRef(props, 'md')
 const cleanHtml = computed(() => {
     if (md.value) {
+        // console.log(md.value)
         return DOMPurify.sanitize(marked(md.value))
     } else {
-        router.push({name: '404', query:{backName: 'blog'}})
+        router.push({ name: '404', query: { backName: 'blog' } })
         return '';
         // return `<div style="width:100%;height: 300px;display: flex; justify-content: center; align-items: center;flex-direction: column;">
         //     <div class="no-data" style="margin-bottom:10px;"></div>
@@ -46,8 +47,14 @@ onMounted(() => renderMathInElement(document.querySelector('.markdown-body') as 
             { left: "$$", right: "$$", display: true },
             { left: "$", right: "$", display: false },
             { left: "\\(", right: "\\)", display: false },
-            { left: "\\[", right: "\\]", display: true }
-        ]
+            { left: "\\[", right: "\\]", display: true },
+        ],
+        // preProcess(math:string) {
+        //     //! 这里表明解析时双斜杠会自动转义为单斜杠
+        //     //! 因此对全文的单斜杠转换为双斜杠是可行的！
+        //     console.log(math)
+        //     return math;
+        // }
     }))
 
 </script>
@@ -61,7 +68,7 @@ onMounted(() => renderMathInElement(document.querySelector('.markdown-body') as 
     .markdown-body {
         text-align: left;
         font-family: nunito, Helvetica, Arial, sans-serif;
-        
+
         .no-data {
             background: url(../../assets/nodata.svg) no-repeat center center;
             background-size: contain;

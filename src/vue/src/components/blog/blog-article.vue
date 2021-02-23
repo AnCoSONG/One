@@ -53,7 +53,8 @@ const loadArticle = async () => {
     title.value = articleContent.title
     author.value = articleContent.author
     date.value = articleContent.date
-    mdContent.value = fm(articleContent.content).body
+    // 在这里将单斜杠转行为双斜杠，全文转换可行，因为在渲染的时候会自动转义
+    mdContent.value = fm(articleContent.content).body.replaceAll('\\', '\\\\')
 }
 onMounted(loadArticle)
 //// 本来想在这个页面完整拿取数据，给md-article传参，但是新的script setup不知道为什么无法定义props
