@@ -16,7 +16,7 @@
                 <div class="articles" v-if="articles.length > 0">
                     <div
                         class="article-card"
-                        v-for="(it,idx) in articles"
+                        v-for="(it) in articles"
                         :key="it._id"
                         @click="showArticle(it._id)"
                     >
@@ -80,7 +80,7 @@ const queryString = computed(() => {
 
 const updateArticleList = async () => {
     //* 展示articles
-    console.log(queryString.value)
+    // console.log(queryString.value)
     NProgress.start()
     const res = (await axios.get(queryString.value)).data as ArticleListDto
     const data = res.data
@@ -94,7 +94,7 @@ const updateArticleList = async () => {
 onBeforeMount(updateArticleList) // async component
 watch([pageNo, pageSize, query], updateArticleList);
 const handleCurrentPage = (val: any) => {
-    console.log(`第${val}页`)
+    // console.log(`第${val}页`)
     pageNo.value = val
     window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })
 }

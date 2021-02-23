@@ -2,7 +2,7 @@ import { App, provide, inject } from "vue";
 import axios, { AxiosInstance } from "axios";
 const axiosSymbol = Symbol();
 export const vueAxios = (app: App) => {
-  console.log(import.meta.env)
+  // console.log(import.meta.env)
   const service = axios.create({
     baseURL: <string>import.meta.env.VITE_API_URL,
     timeout: 30000, // 请求超时时间
