@@ -41,3 +41,5 @@ createApp(App).use(router).use(store).mount('#app')
 - [ ] markdown内a标签锚点跳转平滑（onMounted内劫持所有锚点a标签）
 - [ ] markdown视频小尺寸下会超出，需要设置markdown-body video {max-width: 100%}
 - [ ] 多行公式无法渲染（非katex问题）
+- [ ] 文章标签功能
+- [ ] 登录功能
