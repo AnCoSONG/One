@@ -9,7 +9,7 @@
                     >&larr;</span>
                     <span style="font-size: 1em;letter-spacing: 0.1rem;">Blog</span>
                 </router-link>
-                <div class="title">{{ title }}</div>
+                <h1 class="title">{{ title }}</h1>
                 <div class="article-info">
                     <!-- author -->
                     <div class="author">{{ author }}</div>
@@ -110,6 +110,7 @@ onMounted(loadArticle)
                 font-size: 2.75rem;
                 font-weight: 700;
                 color: #333;
+                margin:0;
                 // overflow: hidden;
                 // white-space: nowrap;
                 // text-overflow: ellipsis;
