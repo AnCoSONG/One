@@ -14,7 +14,7 @@
     "dompurify": "^2.2.6",
     "element-plus": "^1.0.2-beta.32",
     "front-matter": "^4.0.2",
-    "highlight.js": "^11.2.0",
+    "highlight.js": "10.6",
     "katex": "^0.12.0",
     "marked": "^2.0.0",
     "mockjs": "^1.1.0",

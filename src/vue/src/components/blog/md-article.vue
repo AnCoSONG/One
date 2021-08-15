@@ -5,11 +5,12 @@
     <!-- 3. auto-render 数学公式渲染 -->
     <!-- 本组件只负责markdown文件的解析和渲染展示 -->
     <div class="md-article-comp">
-        <main class="markdown-body" v-html="cleanHtml"></main>
+        <main class="markdown-body" v-html="cleanHtml" v-highlight></main>
     </div>
 </template>
 <script setup lang='ts'>
 import marked from 'marked'
+import hljs from "highlight.js"
 import DOMPurify from 'dompurify'
 import { useRouter } from 'vue-router'
 import katex from 'katex'
@@ -17,7 +18,6 @@ import { computed, onMounted, defineProps, toRef } from 'vue';
 // import { md } from './temp'
 import renderMathInElement from 'katex/dist/contrib/auto-render';
 const router = useRouter()
-import hljs from "highlight.js"
 
 
 //// 根据article id拿到文章详细
@@ -27,11 +27,14 @@ const props = defineProps({
     md: String // vue3 setup的props定义方式
 })
 const md = toRef(props, 'md')
-marked.setOptions({
-    highlight: function(code) {
-        return hljs.highlightAuto(code).value
-    }
-})
+// marked.setOptions({
+//     renderer: new marked.Renderer(),
+//     highlight: function(code) {
+//         // console.log(hljs.highlightAuto(code).value)
+//         // return hljs.highlightAuto(code).value
+//     },
+// })
+
 const cleanHtml = computed(() => {
     if (md.value) {
         // console.log(md.value)
@@ -63,11 +66,9 @@ onMounted(() => renderMathInElement(document.querySelector('.markdown-body') as 
         //     return math;
         // }
     }))
-
 </script>
 <style lang="scss">
 @import "styles/md.scss";
-@import "styles/code.scss";
 
 .md-article-comp {
     padding: 0 10px;

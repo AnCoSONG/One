@@ -1010,15 +1010,15 @@ hash-sum@^2.0.0:
   resolved "https://registry.npm.taobao.org/hash-sum/download/hash-sum-2.0.0.tgz#81d01bb5de8ea4a214ad5d6ead1b523460b0b45a"
   integrity sha1-gdAbtd6OpKIUrV1urRtSNGCwtFo=
 
+highlight.js@10.6:
+  version "10.6.0"
+  resolved "https://registry.nlark.com/highlight.js/download/highlight.js-10.6.0.tgz#0073aa71d566906965ba6e1b7be7b2682f5e18b6"
+  integrity sha1-AHOqcdVmkGllum4be+eyaC9eGLY=
+
 highlight.js@^10.0.0:
   version "10.5.0"
   resolved "https://registry.npm.taobao.org/highlight.js/download/highlight.js-10.5.0.tgz#3f09fede6a865757378f2d9ebdcbc15ba268f98f"
   integrity sha1-Pwn+3mqGV1c3jy2evcvBW6Jo+Y8=
-
-highlight.js@^11.2.0:
-  version "11.2.0"
-  resolved "https://registry.nlark.com/highlight.js/download/highlight.js-11.2.0.tgz#a7e3b8c1fdc4f0538b93b2dc2ddd53a40c6ab0f0"
-  integrity sha1-p+O4wf3E8FOLk7LcLd1TpAxqsPA=
 
 http-errors@1.7.2:
   version "1.7.2"
