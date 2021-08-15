@@ -17,6 +17,8 @@ import { computed, onMounted, defineProps, toRef } from 'vue';
 // import { md } from './temp'
 import renderMathInElement from 'katex/dist/contrib/auto-render';
 const router = useRouter()
+import hljs from "highlight.js"
+
 
 //// 根据article id拿到文章详细
 // 通过props拿到原始md，进行处理
@@ -25,6 +27,11 @@ const props = defineProps({
     md: String // vue3 setup的props定义方式
 })
 const md = toRef(props, 'md')
+marked.setOptions({
+    highlight: function(code) {
+        return hljs.highlightAuto(code).value
+    }
+})
 const cleanHtml = computed(() => {
     if (md.value) {
         // console.log(md.value)
@@ -60,6 +67,7 @@ onMounted(() => renderMathInElement(document.querySelector('.markdown-body') as 
 </script>
 <style lang="scss">
 @import "styles/md.scss";
+@import "styles/code.scss";
 
 .md-article-comp {
     padding: 0 10px;
@@ -74,6 +82,10 @@ onMounted(() => renderMathInElement(document.querySelector('.markdown-body') as 
             background-size: contain;
             height: 120px;
             width: 160px;
+        }
+
+        span.katex {
+            overflow: auto hidden;
         }
     }
 
